@@ -63,21 +63,6 @@
         </div>
       </div>
 
-<?php  if (isset($errors)): ?>
-<div class="row">
-  <div class="col-lg-12">
-    <div class="alert alert-danger">
-      Please fix the following errors:
-      <ul class="mb-0">
-<?php  foreach ($errors as $error): ?>
-        <li><?php echo($error); ?></li>
-<?php  endforeach; ?>
-      </ul>
-    </div>
-  </div>
-</div>
-<?php  endif;?>
-      
 <?php  if (isset($_SESSION['flash'])): ?>
 <div class="alert alert-success alert-dismissible flash-message" role="alert" id="flash">
   <?php echo($_SESSION['flash']); ?>
