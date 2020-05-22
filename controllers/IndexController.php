@@ -15,7 +15,7 @@ class IndexController extends Controller {
     $v->rule('float_field', 'float', 'Not a valid floating point number');
     $v->rule('money_field', 'money', 'Not a valid amount of money');
     $v->rule('password1_field', 'password', 'Not strong enough');
-    $v->rule('password2_field', 'same[password]', 'Does not match');
+    $v->rule('password2_field', 'same[password1_field]', 'Does not match');
     $v->rule('between_field', 'between[25,555]', 'Not between 25 and 555');
     return $v;
   }
@@ -23,18 +23,33 @@ class IndexController extends Controller {
     $this->view->renderTemplate(
       "views/index.php",
       array(
-        'title' => 'Home',
+        'title' => 'Form validation',
         'form' => [
           'required_field' => '',
-          'phone_field' => '',
-          'email_field' => '',
-          'integer_field' => '',
-          'float_field' => '',
-          '' => '',
-          '' => '',
-          '' => '',
-          '' => '',
+          'phone_field' => '555-555-555',
+          'email_field' => 'foo@bar',
+          'integer_field' => '3.14',
+          'float_field' => '6.023E23a',
+          'money_field' => '$5.0',
+          'password1_field' => 'too_weak',
+          'password2_field' => 'also_too_weak',
+          'between_field' => '20',
         ],
+      )
+    );
+  }
+
+  public function post_index() {
+    $form = safeParam($_POST, 'form');
+    $form_validator = build_validator();
+    $errors = $form_validator->get_errors();
+    if (!$errors) {
+      $this->view->flash("Form validated!");
+    }
+    $this->view->renderTemplate(
+      "views/index.php",
+      array(
+        'title' => 'Form validation',
       )
     );
   }
