@@ -14,7 +14,7 @@ class IndexController extends Controller {
     $v->rule('integer_field', 'integer', 'Not a valid integer');
     $v->rule('float_field', 'float', 'Not a valid floating point number');
     $v->rule('money_field', 'money', 'Not a valid amount of money');
-    $v->rule('password1_field', 'password', 'Not strong enough');
+    $v->rule('password1_field', 'password', 'Must be at least 8 characters with an upper case character, digit, and symbol.');
     $v->rule('password2_field', 'same[password1_field]', 'Does not match');
     $v->rule('between_field', 'between[25,555]', 'Not between 25 and 555');
     return $v;

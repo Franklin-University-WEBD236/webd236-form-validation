@@ -63,21 +63,6 @@
         </div>
       </div>
 
-<?php  if (isset($errors) && $errors): ?>
-<div class="row">
-  <div class="col-lg-12">
-    <div class="alert alert-danger">
-      Please fix the following errors:
-      <ul class="mb-0">
-<?php  foreach ($errors as $error): ?>
-        <li><?php echo($error); ?></li>
-<?php  endforeach; ?>
-      </ul>
-    </div>
-  </div>
-</div>
-<?php  endif;?>
-      
 <?php  if (isset($_SESSION['flash'])): ?>
 <div class="alert alert-success alert-dismissible flash-message" role="alert" id="flash">
   <?php echo($_SESSION['flash']); ?>
@@ -106,6 +91,17 @@
       validity using both the <code>include/Validator.php</code> and
       the <code>include/FormValidator.php</code>.
     </p>
+    
+<?php  if (isset($errors) && $errors): ?>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="alert alert-danger">
+      Please fix the errors indicated below.
+    </div>
+  </div>
+</div>
+<?php  endif;?>
+    
     <form action="/index" method="post">
       <div class="form-group">
         <label for="required_field">A required field</label>
@@ -114,42 +110,42 @@
       </div>
       <div class="form-group">
         <label for="phone_field">A phone number</label>
-        <input type="text" min="1" id="phone_field" name="form[phone_field]" class="form-control <?php echo(htmlspecialchars($this->is_invalid($errors['required_field']))); ?>" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['phone_field']))); ?>" />
+        <input type="text" min="1" id="phone_field" name="form[phone_field]" class="form-control <?php echo(htmlspecialchars($this->is_invalid($errors['phone_field']))); ?>" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['phone_field']))); ?>" />
         <small class="text-danger"><?php echo(htmlspecialchars($this->value($errors['phone_field']))); ?></small>
       </div>
       <div class="form-group">
         <label for="email_field">An email address</label>
-        <input type="text" min="1" id="email_field" name="form[email_field]" class="form-control" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['email_field']))); ?>" />
+        <input type="text" min="1" id="email_field" name="form[email_field]" class="form-control <?php echo(htmlspecialchars($this->is_invalid($errors['email_field']))); ?>" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['email_field']))); ?>" />
         <small class="text-danger"><?php echo(htmlspecialchars($this->value($errors['email_field']))); ?></small>
       </div>
       <div class="form-group">
         <label for="integer_field">An integer</label>
-        <input type="text" min="1" id="integer_field" name="form[integer_field]" class="form-control" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['integer_field']))); ?>" />
+        <input type="text" min="1" id="integer_field" name="form[integer_field]" class="form-control <?php echo(htmlspecialchars($this->is_invalid($errors['integer_field']))); ?>" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['integer_field']))); ?>" />
         <small class="text-danger"><?php echo(htmlspecialchars($this->value($errors['integer_field']))); ?></small>
       </div>
       <div class="form-group">
         <label for="float_field">A floating point number</label>
-        <input type="text" min="1" id="float_field" name="form[float_field]" class="form-control" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['float_field']))); ?>" />
+        <input type="text" min="1" id="float_field" name="form[float_field]" class="form-control <?php echo(htmlspecialchars($this->is_invalid($errors['float_field']))); ?>" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['float_field']))); ?>" />
         <small class="text-danger"><?php echo(htmlspecialchars($this->value($errors['float_field']))); ?></small>
       </div>
       <div class="form-group">
         <label for="money_field">An amount of money</label>
-        <input type="text" min="1" id="money_field" name="form[money_field]" class="form-control" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['money_field']))); ?>" />
+        <input type="text" min="1" id="money_field" name="form[money_field]" class="form-control <?php echo(htmlspecialchars($this->is_invalid($errors['money_field']))); ?>" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['money_field']))); ?>" />
         <small class="text-danger"><?php echo(htmlspecialchars($this->value($errors['money_field']))); ?></small>
       </div>
       <div class="form-group">
         <label for="password1_field">A strong password</label>
-        <input type="text" min="1" id="password1_field" name="form[password1_field]" class="form-control" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['password1_field']))); ?>" />
+        <input type="text" min="1" id="password1_field" name="form[password1_field]" class="form-control <?php echo(htmlspecialchars($this->is_invalid($errors['password1_field']))); ?>" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['password1_field']))); ?>" />
         <small class="text-danger"><?php echo(htmlspecialchars($this->value($errors['password1_field']))); ?></small>
       </div>
       <div class="form-group">
         <label for="password2_field">Must match above password</label>
-        <input type="text" min="1" id="password2_field" name="form[password2_field]" class="form-control" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['password2_field']))); ?>" />
+        <input type="text" min="1" id="password2_field" name="form[password2_field]" class="form-control <?php echo(htmlspecialchars($this->is_invalid($errors['password2_field']))); ?>" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['password2_field']))); ?>" />
         <small class="text-danger"><?php echo(htmlspecialchars($this->value($errors['password2_field']))); ?></small>
       </div>
       <div class="form-group">
         <label for="between_field" class="control-label">Must be between 25 and 555</label>
-        <input type="text" min="1" id="between_field" name="form[between_field]" class="form-control" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['between_field']))); ?>" />
+        <input type="text" min="1" id="between_field" name="form[between_field]" class="form-control <?php echo(htmlspecialchars($this->is_invalid($errors['between_field']))); ?>" placeholder="Enter something" value="<?php echo(htmlspecialchars($this->value($form['between_field']))); ?>" />
         <small class="text-danger"><?php echo(htmlspecialchars($this->value($errors['between_field']))); ?></small>
       </div>
       <div class="form-group mt-4">
