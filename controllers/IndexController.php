@@ -19,6 +19,7 @@ class IndexController extends Controller {
     $v->rule('between_field', 'between[25,555]', 'Not between 25 and 555');
     return $v;
   }
+  
   public function get_index() {
     $this->view->renderTemplate(
       "views/index.php",
@@ -45,15 +46,17 @@ class IndexController extends Controller {
     $errors = $form_validator->get_errors($form);
     if (!$errors) {
       $this->view->flash("Form validated!");
+      $this->view->redirectRelative("index");
+    } else {
+      $this->view->renderTemplate(
+        "views/index.php",
+        array(
+          'title' => 'Form validation',
+          'form' => $form,
+          'errors' => $errors,
+        )
+      );
     }
-    $this->view->renderTemplate(
-      "views/index.php",
-      array(
-        'title' => 'Form validation',
-        'form' => $form,
-        'errors' => $errors,
-      )
-    );
   }
 }
 ?>
