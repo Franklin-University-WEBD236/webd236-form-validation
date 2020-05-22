@@ -1,9 +1,9 @@
 <?php
 define('CONFIG',
   [
-    'authorName'      => 'PUT YOUR NAME HERE',
-    'applicationName' => 'MVC OO Starter',
-    'leadDescription' => 'A good place to start learning Object Oriented MVC',
+    'authorName'      => 'Todd Whittaker',
+    'applicationName' => 'Advanced Form Validation',
+    'leadDescription' => 'Trust, but verify.',
      // don't put on .db3 to the filename
     'databaseFile'    => 'database',
   ]);
