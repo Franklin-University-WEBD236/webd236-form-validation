@@ -111,5 +111,8 @@ class View {
     return isset($something) ? $something : $default;
   }
 
+  function is_invalid(&$something, $default = "") {
+    return isset($something) ? 'is-invalid' : $default;
+  }
 }
 ?>

@@ -2,17 +2,23 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <h1>Try out some form validation</h1>
+    <h1>{{$title}}</h1>
     
+    <p>
+      Try submitting the form below to see how the validation (in
+      <code>controllers/IndexController.php</code>) processes it for
+      validity using both the <code>include/Validator.php</code> and
+      the <code>include/FormValidator.php</code>.
+    </p>
     <form action="@@index@@" method="post">
       <div class="form-group">
         <label for="required_field">A required field</label>
-        <input type="text" min="1" id="required_field" name="form[required_field]" class="form-control" placeholder="Enter something" value="{{$this->value($form['required_field'])}}" />
+        <input type="text" min="1" id="required_field" name="form[required_field]" class="form-control {{$this->is_invalid($errors['required_field'])}}" placeholder="Enter something" value="{{$this->value($form['required_field'])}}" />
         <small class="text-danger">{{$this->value($errors['required_field'])}}</small>
       </div>
       <div class="form-group">
         <label for="phone_field">A phone number</label>
-        <input type="text" min="1" id="phone_field" name="form[phone_field]" class="form-control" placeholder="Enter something" value="{{$this->value($form['phone_field'])}}" />
+        <input type="text" min="1" id="phone_field" name="form[phone_field]" class="form-control {{$this->is_invalid($errors['required_field'])}}" placeholder="Enter something" value="{{$this->value($form['phone_field'])}}" />
         <small class="text-danger">{{$this->value($errors['phone_field'])}}</small>
       </div>
       <div class="form-group">

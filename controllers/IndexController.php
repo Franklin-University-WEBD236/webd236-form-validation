@@ -41,8 +41,8 @@ class IndexController extends Controller {
 
   public function post_index() {
     $form = safeParam($_POST, 'form');
-    $form_validator = build_validator();
-    $errors = $form_validator->get_errors();
+    $form_validator = $this->build_validator();
+    $errors = $form_validator->get_errors($form);
     if (!$errors) {
       $this->view->flash("Form validated!");
     }
@@ -50,6 +50,8 @@ class IndexController extends Controller {
       "views/index.php",
       array(
         'title' => 'Form validation',
+        'form' => $form,
+        'errors' => $errors,
       )
     );
   }
